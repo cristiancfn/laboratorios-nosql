@@ -1,0 +1,28 @@
+{
+  "title": "Despliegue de un Replica Set con Docker",
+  "description": "Aprende a configurar la tolerancia a fallos en MongoDB.",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Fase 1: Preparación de la Infraestructura",
+        "text": "step1.md"
+      },
+      {
+        "title": "Fase 2: Configuración del Clúster y Tolerancia a Fallos",
+        "text": "step2.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}

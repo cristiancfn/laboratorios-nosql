@@ -1,0 +1,17 @@
+{
+  "title": "Laboratorios de Bases de Datos",
+  "details": {
+    "steps": [
+      {
+        "title": "Bases de Datos No Relacionales",
+        "courses": [
+          {
+            "course_id": "mongo-replica",
+            "title": "Despliegue de un Replica Set con Docker",
+            "description": "Laboratorio práctico para configurar un clúster de alta disponibilidad en MongoDB."
+          }
+        ]
+      }
+    ]
+  }
+}
