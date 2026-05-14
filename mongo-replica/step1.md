@@ -33,7 +33,7 @@ EOF
 Ahora, levanta los tres contenedores en segundo plano haciendo clic aquí:
 
 ```bash
-docker compose up -d
+docker-compose up -d
 ```{{execute}}
 
 Verifica que los tres contenedores estén corriendo correctamente:
