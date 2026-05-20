@@ -11,6 +11,8 @@ services:
     command: ["--replSet", "ecorutas-rs", "--bind_ip_all", "--port", "27017"]
     ports: ["27017:27017"]
     volumes: ["./data/nodo1:/data/db"]
+	networks:
+	  - ecorutas-net
     
   ecorutas-nodo2:
     image: mongo:6.0
@@ -18,6 +20,8 @@ services:
     command: ["--replSet", "ecorutas-rs", "--bind_ip_all", "--port", "27018"]
     ports: ["27018:27018"]
     volumes: ["./data/nodo2:/data/db"]
+	networks:
+	  - ecorutas-net
 
   ecorutas-arbitro:
     image: mongo:6.0
@@ -25,10 +29,13 @@ services:
     command: ["--replSet", "ecorutas-rs", "--bind_ip_all", "--port", "27019"]
     ports: ["27019:27019"]
     volumes: ["./data/arbitro:/data/db"]
+	networks:
+	  - ecorutas-net
 	
   networks:
-    default:
-      name: ecorutas-net
+    ecorutas-net:
+	  name: ecorutas-net
+	  driver: bridge
 EOF
 ```{{execute}}
 
