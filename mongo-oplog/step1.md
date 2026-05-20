@@ -12,16 +12,16 @@ services:
     ports: ["27017:27017"]
     volumes: ["./data/nodo1:/data/db"]
 	networks:
-	  - ecorutas-net
-    
+      - ecorutas-net
+
   ecorutas-nodo2:
     image: mongo:6.0
     container_name: ecorutas-nodo2
     command: ["--replSet", "ecorutas-rs", "--bind_ip_all", "--port", "27018"]
     ports: ["27018:27018"]
     volumes: ["./data/nodo2:/data/db"]
-	networks:
-	  - ecorutas-net
+    networks:
+      - ecorutas-net
 
   ecorutas-arbitro:
     image: mongo:6.0
@@ -29,8 +29,8 @@ services:
     command: ["--replSet", "ecorutas-rs", "--bind_ip_all", "--port", "27019"]
     ports: ["27019:27019"]
     volumes: ["./data/arbitro:/data/db"]
-	networks:
-	  - ecorutas-net
+    networks:
+      - ecorutas-net
 
   networks:
     ecorutas-net:
