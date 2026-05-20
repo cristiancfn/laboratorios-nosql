@@ -4,22 +4,28 @@ Iniciaremos creando nuestro entorno distribuido. Haz clic en el siguiente bloque
 
 ```bash
 cat << 'EOF' > docker-compose.yml
+version: '3.8'
+
 services:
   ecorutas-nodo1:
     image: mongo:6.0
     container_name: ecorutas-nodo1
     command: ["--replSet", "ecorutas-rs", "--bind_ip_all", "--port", "27017"]
-    ports: ["27017:27017"]
-    volumes: ["./data/nodo1:/data/db"]
-	networks:
+    ports:
+      - "27017:27017"
+    volumes:
+      - "./data/nodo1:/data/db"
+    networks:
       - ecorutas-net
-
+    
   ecorutas-nodo2:
     image: mongo:6.0
     container_name: ecorutas-nodo2
     command: ["--replSet", "ecorutas-rs", "--bind_ip_all", "--port", "27018"]
-    ports: ["27018:27018"]
-    volumes: ["./data/nodo2:/data/db"]
+    ports:
+      - "27018:27018"
+    volumes:
+      - "./data/nodo2:/data/db"
     networks:
       - ecorutas-net
 
@@ -27,14 +33,15 @@ services:
     image: mongo:6.0
     container_name: ecorutas-arbitro
     command: ["--replSet", "ecorutas-rs", "--bind_ip_all", "--port", "27019"]
-    ports: ["27019:27019"]
-    volumes: ["./data/arbitro:/data/db"]
+    ports:
+      - "27019:27019"
+    volumes:
+      - "./data/arbitro:/data/db"
     networks:
       - ecorutas-net
 
-  networks:
-    ecorutas-net:
-    name: ecorutas-net
+networks:
+  ecorutas-net:
     driver: bridge
 EOF
 ```{{execute}}
