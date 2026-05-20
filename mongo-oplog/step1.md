@@ -31,11 +31,11 @@ services:
     volumes: ["./data/arbitro:/data/db"]
 	networks:
 	  - ecorutas-net
-	
+
   networks:
     ecorutas-net:
-	  name: ecorutas-net
-	  driver: bridge
+    name: ecorutas-net
+    driver: bridge
 EOF
 ```{{execute}}
 
