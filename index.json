@@ -9,6 +9,11 @@
             "course_id": "mongo-replica",
             "title": "Despliegue de un Replica Set con Docker",
             "description": "Laboratorio práctico para configurar un clúster de alta disponibilidad en MongoDB."
+          },
+          {
+            "course_id": "mongo-backup",
+            "title": "Administración y Copias de Respaldo Lógicas",
+            "description": "Aprende a ejecutar volcados de datos y restaurar bases de datos ante desastres en MongoDB."
           }
         ]
       }

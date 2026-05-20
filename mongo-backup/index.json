@@ -1,0 +1,36 @@
+{
+  "title": "Administración y Copias de Respaldo Lógicas",
+  "description": "Aprende a realizar respaldos y recuperar una base de datos ante un desastre crítico.",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Fase 1: Despliegue y Población de Datos",
+        "text": "step1.md"
+      },
+      {
+        "title": "Fase 2: Creación del Backup Lógico",
+        "text": "step2.md"
+      },
+      {
+        "title": "Fase 3: Simulacro de Desastre",
+        "text": "step3.md"
+      },
+      {
+        "title": "Fase 4: Restauración del Sistema",
+        "text": "step4.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
