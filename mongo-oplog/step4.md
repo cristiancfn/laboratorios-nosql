@@ -9,7 +9,7 @@ Para no corromper la base de datos general, el Nodo 1 hace un Rollback: Elimina 
 Vamos a explorar nuestro volumen de datos mapeado localmente en /root/data/nodo1/rollback/:
 
 ```bash
-ls -lh data/nodo1/rollback/
+ls -lh data/nodo1/rollback/*/
 ```{{execute}}
 
 ¡Ahí está! Un archivo `.bson` generado automáticamente con nuestra telemetría huérfana.
@@ -17,7 +17,7 @@ ls -lh data/nodo1/rollback/
 Como arquitectos, podemos usar la utilidad `bsondump` para leer ese archivo binario e inspeccionar el dato que se descartó durante la partición de red:
 
 ```bash
-docker exec -i ecorutas-nodo1 sh -c 'bsondump /data/db/rollback/ecorutas_db.telemetria*.bson'
+docker exec -i ecorutas-nodo1 sh -c 'bsondump /data/db/rollback/*/removed*.bson'
 ```{{execute}}
 
 Verás impreso en pantalla el documento `{ vehiculo_id: "FANTASMA", ... }`. Si este dato fuera crucial, ahora podrías re-insertarlo manualmente en el clúster.
