@@ -1,9 +1,9 @@
 ### Fase 3: Simulacro de Split-Brain (Cerebro Dividido)
 
-Vamos a simular un desastre grave de red. Pausaremos el Nodo 2 (el secundario).
+Vamos a simular un desastre grave de red. Desconectaremos de la red el Nodo 2 (el secundario).
 
 ```bash
-docker pause ecorutas-nodo2
+docker network disconnect ecorutas-net ecorutas-nodo2
 ```{{execute}}
 
 El Nodo 1 sigue siendo Primario porque cuenta con el voto del Árbitro (2 de 3 votos = Mayoría). Simularemos que el Nodo 1 recibe un dato, pero **no puede enviarlo al Nodo 2** porque está pausado (aislado):
@@ -21,7 +21,7 @@ docker kill ecorutas-nodo1
 Al mismo tiempo, la red del Nodo 2 se restablece:
 
 ```bash
-docker unpause ecorutas-nodo2
+docker network connect ecorutas-net ecorutas-nodo2
 ```{{execute}}
 
 Demos 5 segundos para que el clúster se dé cuenta y elija al Nodo 2 como nuevo Primario.
