@@ -17,7 +17,7 @@ ls -lh data/nodo1/rollback/
 Como arquitectos, podemos usar la utilidad `bsondump` para leer ese archivo binario e inspeccionar el dato que se descartó durante la partición de red:
 
 ```bash
-bsondump data/nodo1/rollback/ecorutas_db.telemetria*.bson
+docker exec -i ecorutas-nodo1 sh -c 'bsondump /data/db/rollback/ecorutas_db.telemetria*.bson'
 ```{{execute}}
 
 Verás impreso en pantalla el documento `{ vehiculo_id: "FANTASMA", ... }`. Si este dato fuera crucial, ahora podrías re-insertarlo manualmente en el clúster.
