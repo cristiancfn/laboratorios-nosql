@@ -7,7 +7,7 @@ Para recuperar la información, utilizaremos la herramienta mongorestore, apunta
 Haz clic para iniciar el proceso de restauración:
 
 ```bash
-docker exec -it ecorutas_mongo mongorestore --db=ecorutas_db /backups/emergencia/ecorutas_db
+docker exec -it ecorutas_mongo mongorestore --nsInclude="ecorutas_db.*" /backups/emergencia/
 ```{{execute}}
 
 Revisemos si el milagro ocurrió. Verifiquemos nuevamente la cantidad de registros en la base de datos de producción:
