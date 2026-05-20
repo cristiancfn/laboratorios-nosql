@@ -25,6 +25,10 @@ services:
     command: ["--replSet", "ecorutas-rs", "--bind_ip_all", "--port", "27019"]
     ports: ["27019:27019"]
     volumes: ["./data/arbitro:/data/db"]
+	
+  networks:
+    default:
+      name: ecorutas-net
 EOF
 ```{{execute}}
 
