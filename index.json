@@ -14,6 +14,11 @@
             "course_id": "mongo-backup",
             "title": "Administración y Copias de Respaldo Lógicas",
             "description": "Aprende a ejecutar volcados de datos y restaurar bases de datos ante desastres en MongoDB."
+          },
+          {
+            "course_id": "mongo-oplog",
+            "title": "Recuperación, Oplog y Rollbacks",
+            "description": "Inspecciona el motor interno de MongoDB, analiza el Oplog y descubre cómo se gestionan los rollbacks ante particiones de red."
           }
         ]
       }

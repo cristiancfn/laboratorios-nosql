@@ -1,0 +1,36 @@
+{
+  "title": "Recuperación, Oplog y Rollbacks",
+  "description": "Arquitectura Avanzada: Inspección del Oplog y simulación de un escenario de Rollback automático.",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Fase 1: Despliegue de la Topología",
+        "text": "step1.md"
+      },
+      {
+        "title": "Fase 2: Inspección Forense del Oplog",
+        "text": "step2.md"
+      },
+      {
+        "title": "Fase 3: Simulacro de Split-Brain (Cerebro Dividido)",
+        "text": "step3.md"
+      },
+      {
+        "title": "Fase 4: Rescate de Datos (Rollback)",
+        "text": "step4.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}

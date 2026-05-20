@@ -1,4 +1,4 @@
-\# Laboratorio: Administración y Copias de Respaldo Lógicas
+# Laboratorio: Administración y Copias de Respaldo Lógicas
 
 
 
@@ -6,7 +6,7 @@ Bienvenidos a este entorno de simulación. Como arquitectos de datos de EcoRutas
 
 
 
-\### ¿Qué haremos?
+### ¿Qué haremos?
 
 1\. Desplegaremos un servidor MongoDB aislado usando Docker y lo conectaremos a un volumen en nuestro servidor Linux.
 

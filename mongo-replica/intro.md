@@ -1,4 +1,4 @@
-\# Laboratorio: Alta Disponibilidad con MongoDB
+# Laboratorio: Alta Disponibilidad con MongoDB
 
 
 
@@ -6,7 +6,7 @@ Bienvenidos. En este entorno efímero construiremos un clúster de bases de dato
 
 
 
-\### ¿Qué haremos?
+### ¿Qué haremos?
 
 1\. Desplegaremos tres instancias independientes de MongoDB usando Docker.
 
