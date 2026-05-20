@@ -5,15 +5,16 @@ Primero, crearemos la infraestructura básica y el script que generará nuestra 
 ```bash
 cat << 'EOF' > docker-compose.yml
 version: '3.8'
+
 services:
-mongodb:
-image: mongo:7.0
-container_name: ecorutas_mongo
-restart: always
-ports:
-- "27017:27017"
-volumes:
-- ./mis_backups:/backups
+  mongodb:
+    image: mongo:7.0
+    container_name: ecorutas_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mis_backups:/backups
 EOF
 
 cat << 'EOF' > poblar_datos.js
