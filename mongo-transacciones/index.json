@@ -9,9 +9,7 @@
     "steps": [
       {
         "title": "Fase 1: Inserción Típica (Auto-commit)",
-        "text": "step1.md",
-        "background": "background.sh",
-        "foreground": "foreground.sh"
+        "text": "step1.md"
       },
       {
         "title": "Fase 2: Auditoría con Profiler",
@@ -27,7 +25,10 @@
     }
   },
   "environment": {
-    "uilayout": "terminal"
+    "uilayout": "terminal",
+    "image": "ubuntu:22.04",
+    "background": "background.sh",
+    "foreground": "foreground.sh"
   },
   "backend": {
     "imageid": "ubuntu"

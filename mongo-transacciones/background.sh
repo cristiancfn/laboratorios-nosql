@@ -1,24 +1,25 @@
 #!/bin/bash
+# Este script se ejecuta de forma silenciosa e invisible en el entorno de Killercoda
 
-#Este script se ejecuta invisiblemente apenas el alumno entra al escenario.
-
-#1. Levantar MongoDB 7.0 usando Docker con Replica Set habilitado (--replSet rs0)
-
+# 1. Eliminar cualquier contenedor previo por si acaso y levantar MongoDB 7.0
+docker rm -f mongodb 2>/dev/null
 docker run -d --name mongodb -p 27017:27017 mongo:7.0 --replSet rs0
 
-#2. Esperar a que el demonio de Mongo esté listo para recibir conexiones
+# 2. Bucle para asegurar que el demonio de Mongo esté listo para recibir conexiones
+until docker exec mongodb mongosh --eval "print(\"waited for connection\")" &>/dev/null; do
+    sleep 2
+done
 
-sleep 10
+# 3. Inicializar el Replica Set (Requisito estricto para transacciones)
+docker exec mongodb mongosh --eval "rs.initiate()" &>/dev/null
 
-#3. Inicializar el Replica Set (Requisito estricto para transacciones)
+# Darle unos segundos adicionales al motor para que asuma el rol de PRIMARY
+sleep 5
 
-docker exec mongodb mongosh --eval "rs.initiate()"
-
-#4. Crear un alias global de 'mongosh' para que el alumno no tenga que escribir comandos docker
-
+# 4. Crear un alias global de 'mongosh' para el alumno
 echo -e '#!/bin/bash\ndocker exec -it mongodb mongosh "$@"' > /usr/local/bin/mongosh
 chmod +x /usr/local/bin/mongosh
 
-#5. Bandera de finalización para liberar la terminal del alumno
-
+# 5. Crear la bandera de éxito para que foreground.sh libere la terminal
 touch /tmp/scenario-ready
+```

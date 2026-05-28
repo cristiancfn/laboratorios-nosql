@@ -1,18 +1,27 @@
 #!/bin/bash
+# Limpiar la pantalla para una mejor experiencia visual
+clear
 
-#Muestra un mensaje amigable mientras el background.sh termina de configurar el Replica Set
+echo -e "\e[1;34m=====================================================\e[0m"
+echo -e "\e[1;37m🚀 Configurando la arquitectura del servidor MongoDB...\e[0m"
+echo -e "\e[1;34m=====================================================\e[0m"
+echo -e "\nPor favor, espera unos segundos mientras se inicializa el Replica Set (rs0)."
+echo -e "Esto es un requisito estricto para habilitar transacciones ACID en MongoDB.\n"
 
-echo "Configurando la arquitectura del servidor MongoDB (Replica Set)..."
-echo "Por favor, espera unos segundos..."
-
+# Spinner de carga animado
+spinner=( Ooooo oOooo ooOoo oooOo ooooO oooOo ooOoo oOooo )
 while [ ! -f /tmp/scenario-ready ]; do
-  sleep 1
+  for i in "${spinner[@]}"; do
+    echo -en "\r\e[1;33m⏳ Desplegando contenedor y configurando motor... $i\e[0m"
+    sleep 0.2
+    if [ -f /tmp/scenario-ready ]; then break; fi
+  done
 done
 
 clear
-echo "====================================================="
-echo "✅ Servidor Linux y MongoDB listos."
-echo "✅ Replica Set (rs0) inicializado."
-echo "====================================================="
-echo " "
-echo "Ya puedes continuar con el laboratorio."
+echo -e "\e[1;32m=====================================================\e[0m"
+echo -e "\e[1;32m✅ Servidor Linux y MongoDB (versión 7.0) listos.\e[0m"
+echo -e "\e[1;32m✅ Replica Set (rs0) inicializado correctamente.\e[0m"
+echo -e "\e[1;32m=====================================================\e[0m"
+echo -e "\nYa puedes continuar con el laboratorio ejecutando los comandos."
+```
