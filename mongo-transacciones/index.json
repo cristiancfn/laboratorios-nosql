@@ -1,0 +1,36 @@
+{
+   "title":"Operaciones Críticas: Profiler y Transacciones",
+   "description":"Laboratorio de MongoDB: Diferencia el autocommit vs transacciones ACID, y detecta cuellos de botella con el Database Profiler.",
+   "details":{
+      "steps":[
+         {
+            "title":"Fase 1: Inserción Típica (Auto-commit)",
+            "text":"step1.md"
+         },
+         {
+            "title":"Fase 2: Auditoría con Profiler",
+            "text":"step2.md"
+         },
+         {
+            "title":"Fase 3: Bloque Transaccional (MVCC)",
+            "text":"step3.md"
+         }
+      ],
+      "intro":{
+         "text":"intro.md",
+         "credits":"Arquitectura de Datos"
+      },
+      "finish":{
+         "text":"finish.md"
+      }
+   },
+   "environment":{
+      "uilayout":"terminal",
+      "image":"ubuntu:22.04",
+      "background":"background.sh",
+      "foreground":"foreground.sh"
+   },
+   "backend":{
+      "imageid":"ubuntu"
+   }
+}

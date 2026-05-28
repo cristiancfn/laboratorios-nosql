@@ -19,7 +19,12 @@
             "course_id": "mongo-oplog",
             "title": "Recuperación, Oplog y Rollbacks",
             "description": "Inspecciona el motor interno de MongoDB, analiza el Oplog y descubre cómo se gestionan los rollbacks ante particiones de red."
-          }
+          },
+		  {
+			"course_id": "mongo-transacciones",
+			"title": "Operaciones Críticas: Profiler y Transacciones",
+			"description": "Diferencia el autocommit vs transacciones ACID, y detecta cuellos de botella con el Database Profiler."
+		  }
         ]
       }
     ]
