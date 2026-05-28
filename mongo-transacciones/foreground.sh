@@ -12,6 +12,8 @@ echo ""
 # Espera silenciosa a que el script de fondo termine, todo en una sola línea
 while [ ! -f /tmp/scenario-ready ]; do sleep 1; done
 
+clear
+
 # Mensajes de éxito simples
 echo "====================================================="
 echo "Servidor Linux y MongoDB (versión 7.0) listos."
