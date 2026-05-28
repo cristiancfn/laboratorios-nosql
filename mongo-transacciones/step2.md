@@ -23,10 +23,7 @@ db.historial.find({ numero_transferencia: 99999 })
 Veamos qué "atrapó" nuestra herramienta de auditoría leyendo la colección oculta system.profile:
 
 ```javascript
-db.system.profile.find(
-  { "command.filter.numero_transferencia": 99999 },
-  { millis: 1, planSummary: 1, docsExamined: 1, _id: 0 }
-).pretty()
+db.system.profile.find().pretty()
 ```{{execute}}
 
 **¡Analiza la salida!**
@@ -45,12 +42,9 @@ Ejecutemos la consulta de nuevo:
 db.historial.find({ numero_transferencia: 99999 })
 ```{{execute}}
 
-Y volvamos a revisar el Profiler para esa nueva ejecución (esta vez tardará 0 o 1 millisegundo):
+Y volvamos a revisar el Profiler para esa nueva ejecución, no deberíamos ver la consulta porque no supera el umbral del Profiler.
 ```javascript
-db.system.profile.find(
-  { "command.filter.numero_transferencia": 99999 },
-  { millis: 1, planSummary: 1, docsExamined: 1, _id: 0 }
-).sort({$natural: -1}).limit(1).pretty()
+db.system.profile.find().pretty()
 ```{{execute}}
 
 *¡Felicidades! Pasaste de un `COLLSCAN` destructivo a un `IXSCAN` eficiente examinando solo 1 documento.*
