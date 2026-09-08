@@ -1,0 +1,34 @@
+{
+  "title": "Simulación: Minería de Datos con Docker y K-Means",
+  "description": "Despliega un entorno analítico aislado usando Docker Compose y ejecuta un algoritmo de Clustering (K-Means) con Python.",
+  "difficulty": "Intermediate",
+  "time": "15",
+  "details": {
+    "steps": [
+      {
+        "title": "Paso 1: Explorar la infraestructura",
+        "text": "step1.md"
+      },
+      {
+        "title": "Paso 2: El algoritmo K-Means",
+        "text": "step2.md"
+      },
+      {
+        "title": "Paso 3: Ejecutar el contenedor",
+        "text": "step3.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "editor-terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}

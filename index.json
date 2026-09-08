@@ -24,6 +24,11 @@
 			"course_id": "mongo-transacciones",
 			"title": "Operaciones Críticas: Profiler y Transacciones",
 			"description": "Diferencia el autocommit vs transacciones ACID, y detecta cuellos de botella con el Database Profiler."
+		  },
+		  {
+			"course_id": "mineria-kmeans-docker",
+			"title": "Simulación de Mineria de Datos",
+			"description": "Un ejercicio donde se simula Minería de Datos con Python y Docker."
 		  }
         ]
       }
