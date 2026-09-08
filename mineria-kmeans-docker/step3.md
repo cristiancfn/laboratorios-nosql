@@ -16,15 +16,15 @@ docker-compose up
 
 Una vez finalice la ejecución, la terminal te mostrará los 3 centroides que K-Means encontró de forma autónoma y se habrá generado el archivo `clusters_output.png`.
 
-Para visualizar este artefacto analítico, levantaremos un servidor web ligero en el puerto 80:
+Para visualizar este artefacto analítico, levantaremos un servidor web ligero en el puerto 8080:
 
 ```bash
-python3 -m http.server 80
+python3 -m http.server 8080
 ```{{execute}}
 
 **Para ver la gráfica:**
-1. En la parte superior de la interfaz de Killercoda, busca el botón **Ports** (Puertos) o el ícono de un enlace.
-2. Haz clic para abrir el puerto **80**.
+1. En la parte superior de la interfaz de Killercoda, busca el botón **Ports** (Puertos).
+2. Escribe **8080** y ábrelo (o haz clic si ya aparece listado).
 3. Se abrirá una nueva pestaña en tu navegador con un índice de archivos. 
 4. Haz clic sobre **`clusters_output.png`** para visualizar la segmentación de clientes.
 
