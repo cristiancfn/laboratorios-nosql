@@ -29,6 +29,11 @@
 			"course_id": "mineria-kmeans-docker",
 			"title": "Simulación de Mineria de Datos",
 			"description": "Un ejercicio donde se simula Minería de Datos con Python y Docker."
+		  },
+		  {
+			"course_id": "mongo-instalacion",
+			"title": "Instalación Nativa y Seguridad en MongoDB",
+			"description": "Aprende a instalar MongoDB desde cero, habilitar conexiones remotas y configurar la autenticación."
 		  }
         ]
       }

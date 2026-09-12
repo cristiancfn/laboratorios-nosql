@@ -1,0 +1,39 @@
+{
+  "title": "Instalación Nativa y Seguridad en MongoDB",
+  "description": "Aprende a instalar MongoDB desde cero, habilitar conexiones remotas y configurar la autenticación.",
+  "details": {
+    "steps": [
+      {
+        "title": "Instalación de MongoDB",
+        "text": "step1.md"
+      },
+      {
+        "title": "Habilitar conexiones externas",
+        "text": "step2.md"
+      },
+      {
+        "title": "Crear usuario administrador",
+        "text": "step3.md"
+      },
+      {
+        "title": "Habilitar autenticación y probar",
+        "text": "step4.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal",
+    "showdashboard": true,
+    "dashboards": [{"name": "Ubuntu", "port": 80}],
+    "hideconsole": false
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
