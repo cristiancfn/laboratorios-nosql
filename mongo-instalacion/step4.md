@@ -3,7 +3,7 @@ El usuario está creado, pero MongoDB aún no exige autenticación. Debemos habi
 Usa el siguiente comando para descomentar y habilitar la sección de seguridad:
 `sudo sed -i 's/#security:/security:\n  authorization: enabled/' /etc/mongod.conf`{{execute}}
 
-*(Nota: También puedes usar `nano /etc/mongod.conf` si prefieres hacerlo manualmente).*
+*(Nota: También puedes usar `nano /etc/mongod.conf` si prefieres hacerlo manualmente. Es necesario retirar el numeral antes de la sección security, y debajo de security (con la debida indentación de dos espacios) habilitar la opción authorization: enabled).*
 
 Para que los cambios surtan efecto, debemos reiniciar el servicio:
 `sudo systemctl restart mongod`{{execute}}
