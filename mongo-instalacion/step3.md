@@ -16,13 +16,15 @@ A continuación, escribe cuidadosamente el siguiente comando para crear el usuar
 ```javascript
 db.createUser({
   user: "admin",
-  pwd: "password123",
+  pwd: passwordPrompt(),
   roles: [ 
     { role: "userAdminAnyDatabase", db: "admin" }, 
     { role: "readWriteAnyDatabase", db: "admin" } 
   ]
 })
 ```
+
+*(Nota: No agregamos la contraseña directamente en el comando de creación sino que utilizamos la función passwordPrompt() para que la contraseña no quede quemada en ningún log del sistema.*
 
 Si digitaste todo correctamente, al colocar el último paréntesis }) y presionar Enter, la consola te responderá con el mensaje { ok: 1 }, confirmando que el usuario fue creado exitosamente.
 
