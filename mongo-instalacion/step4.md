@@ -11,7 +11,7 @@ Para que los cambios surtan efecto, debemos reiniciar el servicio:
 Validemos nuevamente que el servicio haya levantado correctamente:
 `sudo systemctl status mongod`{{execute}}
 
-Finalmente, intenta entrar a la Mongo Shell con el usuario recién creado:
-`mongosh -u admin -p password123 --authenticationDatabase admin`{{execute}}
+Finalmente, intenta entrar a la Mongo Shell con el usuario recién creado, recuerda cambiar <password> por la contraseña que hayas ingresado en la creación del usuario:
+`mongosh -u admin -p <password> --authenticationDatabase admin`
 
 Si entras con éxito, ¡la configuración de seguridad funciona perfectamente! Puedes verificar tus privilegios ejecutando `show dbs`{{execute}}.
