@@ -1,4 +1,4 @@
-<div data-wait-for="file" data-file="/tmp/finished" data-text="Instalando y configurando MongoDB de forma nativa... por favor espera unos segundos."></div>
+<div data-wait-for="file" data-file="/tmp/finished" data-text="Instalando MongoDB... (Si ves una advertencia de tiempo de espera en rojo, ignórala, el proceso continúa)."></div>
 
 ¡El entorno está listo para usarse! 🚀
 

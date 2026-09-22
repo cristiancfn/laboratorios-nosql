@@ -1,12 +1,14 @@
 #!/bin/bash
 clear
 echo "Instalando y configurando MongoDB de forma nativa..."
-echo "Por favor espera unos segundos. La terminal se habilitará automáticamente."
+echo "⚠️ NOTA: Es posible que veas una advertencia roja en la pantalla indicando que el script ha fallado o tardado demasiado."
+echo "Por favor ignórala. La instalación sigue en curso en segundo plano."
 echo ""
+echo -n "Configurando"
 
-# Este bucle pausa la terminal hasta que background.sh cree el archivo bandera
 while [ ! -f /tmp/finished ]; do
-  sleep 1
+  echo -n "."
+  sleep 2
 done
 
 clear
