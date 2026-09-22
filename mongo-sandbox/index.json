@@ -5,7 +5,9 @@
     "steps": [
       {
         "title": "Entorno de Práctica",
-        "text": "step1.md"
+        "text": "step1.md",
+		"background": "background.sh",
+        "foreground": "foreground.sh"
       }
     ],
     "intro": {
