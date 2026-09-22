@@ -1,0 +1,32 @@
+{
+  "title": "Sandbox: Entorno de Práctica de MongoDB",
+  "description": "Entorno libre con instalación nativa de MongoDB para interactuar con la shell y el sistema.",
+  "details": {
+    "steps": [
+      {
+        "title": "Entorno de Práctica",
+        "text": "step1.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md",
+      "credits": ""
+    },
+    "terminal": {
+      "type": "terminal"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal",
+    "showDashboard": true,
+    "dashboards": [
+      {
+        "name": "MongoDB (Puerto 27017)",
+        "port": 27017
+      }
+    ]
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}

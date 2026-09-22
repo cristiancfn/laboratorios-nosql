@@ -34,6 +34,11 @@
 			"course_id": "mongo-instalacion",
 			"title": "Instalación Nativa y Seguridad en MongoDB",
 			"description": "Aprende a instalar MongoDB desde cero, habilitar conexiones remotas y configurar la autenticación."
+		  },
+		  {
+			"course_id": "mongo-sandbox",
+			"title": "Sandbox: Entorno de Práctica de MongoDB",
+			"description": "Entorno libre con instalación nativa de MongoDB para interactuar con la shell y el sistema."
 		  }
         ]
       }
