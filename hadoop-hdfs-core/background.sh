@@ -5,7 +5,8 @@
 apt-get update
 apt-get install -y openjdk-8-jdk ssh pdsh wget
 
-# 2. Configurar SSH sin contraseña (Requisito estricto de Hadoop pseudo-distribuido)
+# 2. Iniciar el servicio SSH y Configurar llaves sin contraseña (Requisito estricto)
+service ssh start
 ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 0600 ~/.ssh/authorized_keys
@@ -19,13 +20,24 @@ wget -q https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
 tar -xzf hadoop-3.3.6.tar.gz
 mv hadoop-3.3.6 /usr/local/hadoop
 
-# 4. Inyectar Variables de Entorno
+# 4. Inyectar Variables de Entorno (Incluyendo el bypass de seguridad para usuario Root)
 echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> ~/.bashrc
 echo 'export HADOOP_HOME=/usr/local/hadoop' >> ~/.bashrc
 echo 'export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin' >> ~/.bashrc
+echo 'export HDFS_NAMENODE_USER="root"' >> ~/.bashrc
+echo 'export HDFS_DATANODE_USER="root"' >> ~/.bashrc
+echo 'export HDFS_SECONDARYNAMENODE_USER="root"' >> ~/.bashrc
+echo 'export YARN_RESOURCEMANAGER_USER="root"' >> ~/.bashrc
+echo 'export YARN_NODEMANAGER_USER="root"' >> ~/.bashrc
+
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export HADOOP_HOME=/usr/local/hadoop
 export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+export HDFS_NAMENODE_USER="root"
+export HDFS_DATANODE_USER="root"
+export HDFS_SECONDARYNAMENODE_USER="root"
+export YARN_RESOURCEMANAGER_USER="root"
+export YARN_NODEMANAGER_USER="root"
 
 # 5. Configurar los XML de HDFS (core-site y hdfs-site)
 cat <<EOF > /usr/local/hadoop/etc/hadoop/core-site.xml
