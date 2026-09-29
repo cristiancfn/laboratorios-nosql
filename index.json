@@ -39,6 +39,11 @@
 			"course_id": "mongo-sandbox",
 			"title": "Sandbox: Entorno de Práctica de MongoDB",
 			"description": "Entorno libre con instalación nativa de MongoDB para interactuar con la shell y el sistema."
+		  },
+		  {
+			"course_id": "hadoop-hdfs-core",
+			"title": "Arquitectura Core HDFS",
+			"description": "Interacción práctica con el Sistema de Archivos Distribuido de Hadoop (HDFS). Exploración de fragmentación de bloques y metadatos."
 		  }
         ]
       }

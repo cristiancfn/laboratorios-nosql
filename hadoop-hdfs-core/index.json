@@ -1,0 +1,32 @@
+{
+  "title": "Arquitectura Core HDFS",
+  "description": "Interacción práctica con el Sistema de Archivos Distribuido de Hadoop (HDFS). Exploración de fragmentación de bloques y metadatos.",
+  "details": {
+    "steps": [
+      {
+        "title": "Paso 1: El Ecosistema Vivo (JPS)",
+        "text": "step1.md"
+      },
+      {
+        "title": "Paso 2: Ingesta y el Bloque de 128MB",
+        "text": "step2.md"
+      },
+      {
+        "title": "Paso 3: Análisis Forense de Metadatos",
+        "text": "step3.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
