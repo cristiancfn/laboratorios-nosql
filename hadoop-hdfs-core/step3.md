@@ -8,7 +8,7 @@ Ejecuta el siguiente comando para destripar nuestro archivo:
 
 `hdfs fsck /input_data/dataset.csv -files -blocks -locations`{{execute}}
 
-### Análisis del Resultado (El Momento ¡Ajá!)
+### Análisis del Resultado
 
 Tómate un momento para leer la salida que arrojó la terminal. Busca las siguientes líneas clave:
 
