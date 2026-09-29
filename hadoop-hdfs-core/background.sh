@@ -5,7 +5,7 @@
 apt-get update
 apt-get install -y openjdk-8-jdk ssh pdsh wget
 
-# 2. Iniciar el servicio SSH y Configurar llaves sin contraseña (Requisito estricto)
+# 2. Iniciar el servicio SSH y Configurar llaves sin contraseña
 service ssh start
 ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
@@ -20,7 +20,7 @@ wget -q https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
 tar -xzf hadoop-3.3.6.tar.gz
 mv hadoop-3.3.6 /usr/local/hadoop
 
-# 4. Inyectar Variables de Entorno (Incluyendo el bypass de seguridad para usuario Root)
+# 4. Inyectar Variables de Entorno (Bypass de seguridad Root)
 echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> ~/.bashrc
 echo 'export HADOOP_HOME=/usr/local/hadoop' >> ~/.bashrc
 echo 'export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin' >> ~/.bashrc
@@ -74,10 +74,16 @@ echo 'export PDSH_RCMD_TYPE=ssh' >> /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 hdfs namenode -format -force
 start-dfs.sh
 
-# 7. Crear el archivo de prueba masivo (150 MB de datos aleatorios puros)
+# 7. Crear el archivo de prueba masivo (Generación rápida de un CSV de 160MB)
 cd /root
-# Extraemos 115MB de urandom y al pasarlo por base64 el archivo final pesará aprox 153MB de texto alfanumérico
-head -c 115M /dev/urandom | base64 > /root/dataset.csv
+# 7.1 Imprimimos la cabecera
+echo "ID,TRANSACCION,CIUDAD,MONTO,FECHA" > /root/dataset.csv
+# 7.2 Generamos un chunk temporal de 25,000 líneas (aprox 1.1 MB)
+for i in {1..25000}; do echo "$i,TRX-$RANDOM,BOGOTA,$RANDOM,2026-09-29" >> /root/chunk.csv; done
+# 7.3 Concatenamos el chunk 150 veces sobre el dataset final (aprox 165 MB). Esto toma ~2 segundos.
+for i in {1..150}; do cat /root/chunk.csv >> /root/dataset.csv; done
+# 7.4 Borramos el chunk temporal
+rm /root/chunk.csv
 
 # 8. Señal de finalización para el script foreground
 echo "done" > /root/setup_done.txt
