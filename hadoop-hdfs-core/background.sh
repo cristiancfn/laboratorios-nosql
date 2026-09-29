@@ -76,7 +76,8 @@ start-dfs.sh
 
 # 7. Crear el archivo de prueba masivo (150 MB de datos aleatorios puros)
 cd /root
-dd if=/dev/urandom of=/root/dataset.csv bs=1M count=150
+# Extraemos 115MB de urandom y al pasarlo por base64 el archivo final pesará aprox 153MB de texto alfanumérico
+head -c 115M /dev/urandom | base64 > /root/dataset.csv
 
 # 8. Señal de finalización para el script foreground
 echo "done" > /root/setup_done.txt
