@@ -1,6 +1,6 @@
 ## Paso 1: El Ecosistema Vivo (JPS)
 
-Antes de interactuar con HDFS, debemos asegurarnos de que la arquitectura Maestro-Esclavo que vimos en la pizarra está realmente ejecutándose.
+Antes de interactuar con HDFS, debemos asegurarnos de que la arquitectura Maestro-Esclavo que vimos en el tablero está realmente ejecutándose.
 
 Dado que Hadoop está escrito íntegramente en Java, cada "Nodo" (NameNode, DataNode) es en realidad un proceso de la JVM (Java Virtual Machine) corriendo en segundo plano.
 
