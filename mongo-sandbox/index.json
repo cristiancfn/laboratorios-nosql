@@ -5,14 +5,14 @@
     "steps": [
       {
         "title": "Entorno de Práctica",
-        "text": "step1.md",
-		"background": "background.sh",
-        "foreground": "foreground.sh"
+        "text": "step1.md"
       }
     ],
     "intro": {
       "text": "intro.md",
-      "credits": ""
+      "credits": "",
+	  "background": "background.sh",
+      "foreground": "foreground.sh"
     },
     "terminal": {
       "type": "terminal"
