@@ -26,5 +26,5 @@ cat /etc/mongod.conf
 Para realizar las prácticas, vamos a conectarnos al clúster remoto de la clase. Haz clic en el siguiente bloque para ejecutar el script de conexión. La terminal te pedirá tu usuario y tu contraseña:
 
 ```bash
-read -p "Usuario: " DB_USER && read -s -p "Contraseña: " DB_PASS && echo "" && mongosh "mongodb+srv://admin:y7SlnEsHYQwFlfU3@cluster0.3le1niv.mongodb.net/?appName=Cluster0"
+read -p "Usuario: " DB_USER && read -s -p "Contraseña: " DB_PASS && echo "" && mongosh "mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.3le1niv.mongodb.net/?appName=Cluster0"
 ```{{execute}}
