@@ -63,8 +63,4 @@ tail -f /tmp/stream_logs.csv | python3 /root/lab-streaming/mapper.py | python3 /
 1. Mira el indicador `(Ventanas en RAM: X)` en el encabezado de cada corte. Notarás que **el número de ventanas almacenadas en el diccionario `conteos` crece sin parar**.
 2. ¿Por qué ocurre esto? Porque si un evento tardío (`-8s` o `-35s`) llega después, el Reducer necesita tener la ventana antigua en memoria para sumarle `+1`. Pero como no hemos definido una regla para **purgar ventanas viejas**, en un entorno de producción este script terminaría derribando el servidor por falta de memoria (`OutOfMemoryError`).
 
-Detén el consumidor en la **Terminal 2** antes de pasar a la Fase 3 haciendo clic aquí (o presionando `Ctrl + C`):
-
-```bash
-^C
-```{{execute ctrl-seq T2}}
+Detén el consumidor en la **Terminal 2** antes de pasar a la Fase 3 presionando `Ctrl + C`.
