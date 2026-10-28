@@ -1,0 +1,34 @@
+{
+  "title": "Arquitecturas de Streaming: De Hadoop Pipes a PySpark Watermarking",
+  "description": "Laboratorio práctico de procesamiento de Datos en Movimiento (Data in Motion), ventanas temporales (Tumbling Windows) y manejo de hechos tardíos (Late Arriving Facts).",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "background.sh",
+      "foreground": "foreground.sh"
+    },
+    "steps": [
+      {
+        "title": "Fase 1: Generador de Stream e Inyección de Hechos Tardíos",
+        "text": "step1.md"
+      },
+      {
+        "title": "Fase 2: Consumidor Clásico estilo Hadoop Streaming (Mapper/Reducer)",
+        "text": "step2.md"
+      },
+      {
+        "title": "Fase 3: Consumidor Stateful con PySpark y Watermarking",
+        "text": "step3.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}

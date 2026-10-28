@@ -44,6 +44,11 @@
 			"course_id": "hadoop-hdfs-core",
 			"title": "Arquitectura Core HDFS",
 			"description": "Interacción práctica con el Sistema de Archivos Distribuido de Hadoop (HDFS). Exploración de fragmentación de bloques y metadatos."
+		  },
+		  {
+			"course_id": "streaming-hadoop-spark",
+			"title": "Arquitecturas de Streaming: De Hadoop Pipes a PySpark Watermarking",
+			"description": "Laboratorio práctico de procesamiento de Datos en Movimiento (Data in Motion), ventanas temporales (Tumbling Windows) y manejo de hechos tardíos (Late Arriving Facts)."
 		  }
         ]
       }
