@@ -3,11 +3,11 @@ Para resolver el problema de agotamiento de memoria RAM sin perder la capacidad 
 Configuraremos:
 * **Tumbling Window:** `10 seconds` basada en la columna `event_time`.
 * **Watermark:** `15 seconds`.
-  $$\text{Watermark} = \max(\text{Event Time visto}) - 15\text{ segundos}$$
+  * *Fórmula del Motor:* `Watermark = max(Event Time visto) - 15 segundos`
 
 Esto significa que:
-1. El evento tardío de **`-8s`** ($\text{Event Time} \ge \text{Watermark}$) encontrará su ventana aún viva en RAM y **actualizará el conteo correctamente**.
-2. El evento muy tardío de **`-35s`** ($\text{Event Time} < \text{Watermark}$) caerá en una ventana ya recolectada por el *Garbage Collector* y **será descartado automáticamente** para proteger la RAM del clúster.
+1. El evento tardío de **`-8s`** (`Event Time >= Watermark`) encontrará su ventana aún viva en RAM y **actualizará el conteo correctamente**.
+2. El evento muy tardío de **`-35s`** (`Event Time < Watermark`) caerá en una ventana ya recolectada por el *Garbage Collector* y **será descartado automáticamente** para proteger la RAM del clúster.
 
 ### 1. Crear el consumidor Stateful (`spark_consumer.py`)
 Haz clic en el bloque para generar el script de PySpark en la **Terminal 2**:

@@ -1,9 +1,9 @@
-Mientras la **Terminal 1** sigue emitiendo tráfico en vivo, usaremos una **segunda terminal (Terminal 2)** para procesar los datos bajo el paradigma clásico de **Hadoop Streaming** (`stdin` $\rightarrow$ `Mapper` $\rightarrow$ `Reducer` $\rightarrow$ `stdout`).
+Mientras la **Terminal 1** sigue emitiendo tráfico en vivo, usaremos una **segunda terminal (Terminal 2)** para procesar los datos bajo el paradigma clásico de **Hadoop Streaming** (`stdin -> Mapper -> Reducer -> stdout`).
 
 Queremos contar únicamente los errores **HTTP 404 y 500** agrupados en **Tumbling Windows de 10 segundos** basadas en el `event_time` del registro.
 
 ### 1. Crear el script `mapper.py`
-Haz clic abajo para crear el Mapper en la **Terminal 2**. Este script filtra los códigos `404` y `500`, trunca el segundo del `event_time` a decenas (ej. `14:20:37` $\rightarrow$ `14:20:30`) para asignarle su ventana de 10 segundos y emite el par `clave \t 1`:
+Haz clic abajo para crear el Mapper en la **Terminal 2**. Este script filtra los códigos `404` y `500`, trunca el segundo del `event_time` a decenas (ej. `14:20:37` -> `14:20:30`) para asignarle su ventana de 10 segundos y emite el par `clave \t 1`:
 
 ```bash
 cat << 'EOF' > /root/lab-streaming/mapper.py
