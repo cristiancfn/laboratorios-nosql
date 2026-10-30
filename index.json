@@ -7,8 +7,8 @@
         "courses": [
           {
             "course_id": "mongo-replica",
-            "title": "Despliegue de un Replica Set con Docker",
-            "description": "Laboratorio práctico para configurar un clúster de alta disponibilidad en MongoDB."
+            "title": "Despliegue de un Replica Set PSA en Linux y Failover",
+            "description": "Configuración de demonios mongod en Linux, inspección de idempotencia en el Oplog, elección automática (Failover) y el dilema Write Concern majority en arquitecturas PSA."
           },
           {
             "course_id": "mongo-backup",

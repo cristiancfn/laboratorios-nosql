@@ -1,18 +1,28 @@
 {
-  "title": "Despliegue de un Replica Set con Docker",
-  "description": "Aprende a configurar la tolerancia a fallos en MongoDB.",
+  "title": "Despliegue de un Replica Set PSA en Linux y Failover",
+  "description": "Configuración de demonios mongod en Linux, inspección de idempotencia en el Oplog, elección automática (Failover) y el dilema Write Concern majority en arquitecturas PSA.",
   "details": {
     "intro": {
-      "text": "intro.md"
+      "text": "intro.md",
+      "background": "background.sh",
+      "foreground": "foreground.sh"
     },
     "steps": [
       {
-        "title": "Fase 1: Preparación de la Infraestructura",
+        "title": "Fase 1: Resolución de Nombres y Demonios en Linux",
         "text": "step1.md"
       },
       {
-        "title": "Fase 2: Configuración del Clúster y Tolerancia a Fallos",
+        "title": "Fase 2: Inicialización del Clúster PSA y Prioridades",
         "text": "step2.md"
+      },
+      {
+        "title": "Fase 3: Replicación, Rol del Árbitro e Idempotencia del Oplog",
+        "text": "step3.md"
+      },
+      {
+        "title": "Fase 4: Simulación de Caída (Failover) y el Dilema PSA",
+        "text": "step4.md"
       }
     ],
     "finish": {
