@@ -31,7 +31,7 @@ Encendamos nuevamente `nodo1`. Como configuramos `nodo1` con `priority: 2` (mayo
 
 ```bash
 mongod --config /etc/mongod1.conf
-sleep 6
+sleep 15
 mongosh --host nodo1 --port 27017 --eval '
   print("🔄 Estado tras el regreso de nodo1 (Prioridad 2):");
   printjson(
@@ -96,7 +96,7 @@ Por último, vuelve a encender `nodo2` para dejar el clúster sano y observa có
 
 ```bash
 mongod --config /etc/mongod2.conf
-sleep 4
+sleep 8
 mongosh --host nodo2 --port 27018 --eval '
   db.getMongo().setReadPref("secondary");
   print("✅ Documentos sincronizados en nodo2 tras recuperarse:");
