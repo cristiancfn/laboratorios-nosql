@@ -1,0 +1,42 @@
+{
+  "title": "Resiliencia, Oplog, Backups y Rollbacks en MongoDB",
+  "description": "Arquitectura de Continuidad de Negocio: Inspección forense del Oplog, copias de respaldo lógicas (mongodump/mongorestore) y resolución de conflictos Split-Brain (Rollback) con procesos nativos.",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "background.sh",
+      "foreground": "foreground.sh"
+    },
+    "steps": [
+      {
+        "title": "Fase 1: Topología del Clúster y Población de Datos",
+        "text": "step1.md"
+      },
+      {
+        "title": "Fase 2: Auditoría Forense del Oplog",
+        "text": "step2.md"
+      },
+      {
+        "title": "Fase 3: Desastre Humano, Backup Lógico y Restauración",
+        "text": "step3.md"
+      },
+      {
+        "title": "Fase 4: Simulacro de Split-Brain (Cerebro Dividido)",
+        "text": "step4.md"
+      },
+      {
+        "title": "Fase 5: Autosanación (Rollback) y Rescate Forense BSON",
+        "text": "step5.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
