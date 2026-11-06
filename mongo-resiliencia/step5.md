@@ -11,12 +11,12 @@ Esperemos 8 segundos mientras el Nodo 1 contacta al Nodo 2 (`27018`). Al compara
 Para no corromper la integridad del clúster, **el Nodo 1 ejecuta automáticamente un Rollback**: revierte su propia escritura (`"FANTASMA"`) y adopta la línea temporal del Nodo 2 (`"REAL"`). Verifiquémoslo consultando ambos documentos en el Nodo 1:
 
 ```bash
-sleep 8
-echo "¿Existe el vehículo REAL en el Nodo 1?"
-mongosh --port 27017 --quiet --eval 'db.getMongo().setReadPref("secondary"); db.getSiblingDB("ecorutas_db").telemetria.findOne({vehiculo_id: "REAL"})'
+sleep 10
+echo "¿Existe el vehículo REAL en el clúster?"
+mongosh --port 27017 --quiet --eval 'db.getMongo().setReadPref("secondaryPreferred"); db.getSiblingDB("ecorutas_db").telemetria.findOne({vehiculo_id: "REAL"})'
 
-echo "¿Existe el vehículo FANTASMA en el Nodo 1?"
-mongosh --port 27017 --quiet --eval 'db.getMongo().setReadPref("secondary"); db.getSiblingDB("ecorutas_db").telemetria.findOne({vehiculo_id: "FANTASMA"})'
+echo "¿Existe el vehículo FANTASMA en el clúster?"
+mongosh --port 27017 --quiet --eval 'db.getMongo().setReadPref("secondaryPreferred"); db.getSiblingDB("ecorutas_db").telemetria.findOne({vehiculo_id: "FANTASMA"})'
 ```{{execute}}
 
 Verás que `"REAL"` ya se replicó al Nodo 1, mientras que `"FANTASMA"` devuelve `null`.
