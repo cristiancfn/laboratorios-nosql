@@ -4,6 +4,12 @@
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -y
 apt-get install -y openjdk-11-jdk ssh pdsh curl wget python3
+# Configurar sshd para permitir login con llave pública de root sin fricción en contenedor
+sed -i 's/#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+sed -i 's/#PubkeyAuthentication.*/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+sed -i 's/#StrictModes.*/StrictModes no/' /etc/ssh/sshd_config
+chmod 700 /root
+service ssh restart
 
 # 2. Generar el dataset crudo de logs transaccionales (50,000 registros con ruido)
 cat << 'EOF' > /tmp/generate_logs.py

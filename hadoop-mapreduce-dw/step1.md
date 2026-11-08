@@ -20,18 +20,20 @@ java -version && ls -lh /root
 
 ### 1.2 Configurar SSH sin contraseña (Passwordless SSH)
 
-Primero, asegúrate de que el servicio SSH esté activo y genera un par de llaves criptográficas RSA vacías (sin frase de paso) para el usuario `root`:
+Primero, asegúrate de que el servicio SSH esté activo y genera un par de llaves criptográficas RSA nuevas y sin frase de paso para el usuario `root` (eliminando antes cualquier llave residual de la imagen base):
 
 ```bash
 service ssh start
+rm -f ~/.ssh/id_rsa ~/.ssh/id_rsa.pub
 ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 ```{{exec}}
 
-Ahora, autoriza tu propia llave pública agregándola al archivo `~/.ssh/authorized_keys` y ajusta los permisos de seguridad:
+Ahora, autoriza tu llave pública agregándola al archivo `~/.ssh/authorized_keys` y aplica los permisos estrictos (`700` para el directorio y `600` para el archivo) que exige el protocolo SSH:
 
 ```bash
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-chmod 0600 ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
 ```{{exec}}
 
 Comprueba que puedes conectarte a `localhost` sin que el sistema te pida contraseña (el parámetro `-o StrictHostKeyChecking=no` registra automáticamente la huella del host en el primer intento):
