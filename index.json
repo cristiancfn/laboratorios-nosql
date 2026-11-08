@@ -44,6 +44,11 @@
 			"course_id": "mongo-resiliencia",
 			"title": "Resiliencia, Oplog, Backups y Rollbacks en MongoDB",
 			"description": "Arquitectura de Continuidad de Negocio: Inspección forense del Oplog, copias de respaldo lógicas (mongodump/mongorestore) y resolución de conflictos Split-Brain (Rollback) con procesos nativos."
+		  },
+		  {
+			"course_id": "hadoop-mapreduce-dw",
+			"title": "De HDFS a Bodega de Datos: Instalación de Hadoop y ETL con MapReduce",
+			"description": "Aprende a instalar Apache Hadoop en modo pseudo-distribuido desde cero, almacenar logs transaccionales en HDFS y procesarlos con MapReduce en Python para construir una Tabla de Hechos."
 		  }
         ]
       }

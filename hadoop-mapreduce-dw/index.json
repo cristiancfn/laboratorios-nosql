@@ -1,0 +1,42 @@
+{
+  "title": "De HDFS a Bodega de Datos: Instalación de Hadoop y ETL con MapReduce",
+  "description": "Aprende a instalar Apache Hadoop en modo pseudo-distribuido desde cero, almacenar logs transaccionales en HDFS y procesarlos con MapReduce en Python para construir una Tabla de Hechos.",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "background.sh",
+      "foreground": "foreground.sh"
+    },
+    "steps": [
+      {
+        "title": "Paso 1: Preparación del Sistema, SSH e Instalación Base",
+        "text": "step1.md"
+      },
+      {
+        "title": "Paso 2: Configuración Pseudo-Distribuida y Tuning de Memoria",
+        "text": "step2.md"
+      },
+      {
+        "title": "Paso 3: Arquitectura del Data Lake e Ingesta en HDFS",
+        "text": "step3.md"
+      },
+      {
+        "title": "Paso 4: Diseño del Proceso MapReduce en Python (Mapper y Reducer)",
+        "text": "step4.md"
+      },
+      {
+        "title": "Paso 5: Ejecución en YARN y Exportación hacia el Modelo Dimensional",
+        "text": "step5.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  },
+  "interface": {
+    "ide": true
+  }
+}
