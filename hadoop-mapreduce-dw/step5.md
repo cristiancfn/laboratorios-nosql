@@ -1,23 +1,25 @@
-# Paso 5: Ejecución en YARN y Exportación hacia el Modelo Dimensional
+# Paso 5: Ejecución del Job MapReduce y Exportación hacia el Modelo Dimensional
 
-Una vez validada la lógica de nuestro `mapper.py` y `reducer.py`, es momento de lanzar el procesamiento distribuido real sobre el clúster utilizando **YARN** y la librería oficial **Hadoop Streaming**.
+Una vez validada la lógica de nuestro `mapper.py` y `reducer.py`, es momento de lanzar el procesamiento real leyendo y escribiendo directamente sobre nuestro sistema de archivos distribuido **HDFS** mediante la librería oficial **Hadoop Streaming**.
 
 ---
 
-### 5.1 Ejecutar el Trabajo MapReduce en el Clúster
+### 5.1 Ejecutar el Trabajo MapReduce sobre HDFS
 
-El comando `hadoop jar` invocará el paquete `hadoop-streaming-3.3.6.jar` pasando cuatro parámetros esenciales:
-* `-files`: Empaqueta y distribuye nuestros scripts de Python a los nodos trabajadores.
-* `-mapper` y `-reducer`: Define los ejecutables de cada fase.
+El comando `hadoop jar` invocará el paquete `hadoop-streaming-3.3.6.jar` pasando los siguientes parámetros esenciales:
+* `-D mapreduce.framework.name=local`: Como estamos en un contenedor ligero donde ya tenemos 5 demonios de infraestructura corriendo en la RAM, le indicamos a Hadoop que ejecute las fases `Map`, `Shuffle & Sort` y `Reduce` utilizando el `LocalJobRunner` dentro de la misma JVM cliente (evitando abrir contenedores adicionales pesados que agotarían la memoria física del entorno virtual), pero **leyendo y escribiendo los bloques reales en HDFS**.
+* `-D mapreduce.output.textoutputformat.separator=""`: Asegura que el archivo final quede en formato CSV puro sin tabuladores residuales al final de cada línea.
+* `-files`: Empaqueta nuestros scripts `mapper.py` y `reducer.py`.
 * `-input`: Ruta de origen en HDFS (`/datalake/raw/pos_logs/raw_pos_transactions.log`).
-* `-output`: Directorio de destino en HDFS (`/datalake/refined/fact_ventas_diarias`). **Importante:** En Hadoop, el directorio de salida no debe existir previamente (para evitar sobrescrituras accidentales).
+* `-output`: Directorio de destino en HDFS (`/datalake/refined/fact_ventas_diarias`). **Importante:** En Hadoop, el directorio de salida no debe existir previamente para prevenir la sobrescritura accidental de datos.
 
-Además, usaremos `-D mapreduce.output.textoutputformat.separator=""` para que el archivo final quede en formato CSV limpio sin tabuladores residuales al final de cada línea.
-
-Ejecuta el trabajo en el clúster (tomará alrededor de 20 a 35 segundos):
+Ejecuta el trabajo (por seguridad eliminamos antes el directorio de destino en caso de que exista de una prueba previa):
 
 ```bash
+hdfs dfs -rm -r -f /datalake/refined/fact_ventas_diarias
+
 hadoop jar /opt/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar \
+  -D mapreduce.framework.name=local \
   -D mapreduce.output.textoutputformat.separator="" \
   -files /root/mapreduce/mapper.py,/root/mapreduce/reducer.py \
   -mapper "python3 mapper.py" \
@@ -26,10 +28,7 @@ hadoop jar /opt/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar \
   -output /datalake/refined/fact_ventas_diarias
 ```{{exec}}
 
-Observa en la consola el progreso de tipo `map 0% reduce 0%` hasta llegar a `map 100% reduce 100%` y las estadísticas finales (*Map-Reduce Framework*: registros de entrada, registros de salida y bytes procesados).
-
-> **Inspecciona el Orquestador YARN:** Puedes abrir la interfaz gráfica del **ResourceManager** para ver el historial y estado de la aplicación ejecutada haciendo clic aquí:
-> [Abrir Interfaz Web de YARN ResourceManager (Puerto 8088)]({{TRAFFIC_HOST1_8088}})
+Observa en la consola cómo el trabajo procesa los bloques de HDFS hasta alcanzar `map 100% reduce 100%` y presenta las estadísticas finales (*Map-Reduce Framework*: registros de entrada leídos, registros filtrados y registros de salida emitidos).
 
 ---
 
