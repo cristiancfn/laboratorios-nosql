@@ -49,6 +49,11 @@
 			"course_id": "hadoop-mapreduce-dw",
 			"title": "De HDFS a Bodega de Datos: Instalación de Hadoop y ETL con MapReduce",
 			"description": "Aprende a instalar Apache Hadoop en modo pseudo-distribuido desde cero, almacenar logs transaccionales en HDFS y procesarlos con MapReduce en Python para construir una Tabla de Hechos."
+		  },
+		  {
+			"course_id": "mongo-benchmarking",
+			"title": "Benchmarking de Bases de Datos NoSQL: Culling, Comparison y Scaling",
+			"description": "Aplica las tres etapas formales del proceso de benchmarking evaluando Redis y MongoDB bajo restricciones controladas de hardware."
 		  }
         ]
       }

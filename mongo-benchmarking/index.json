@@ -1,0 +1,35 @@
+{
+  "title": "Benchmarking de Bases de Datos NoSQL: Culling, Comparison y Scaling",
+  "description": "Aplica las tres etapas formales del proceso de benchmarking evaluando Redis y MongoDB bajo restricciones controladas de hardware.",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "background.sh",
+      "foreground": "foreground.sh"
+    },
+    "steps": [
+      {
+        "title": "Etapa 1: Culling (Descarte Arquitectónico y Funcional)",
+        "text": "step1.md"
+      },
+      {
+        "title": "Etapa 2A: Comparison - Estrategias de Ingesta (Individual vs Bulk)",
+        "text": "step2.md"
+      },
+      {
+        "title": "Etapa 2B: Comparison - Localidad Espacial vs Aleatoriedad en Índices",
+        "text": "step3.md"
+      },
+      {
+        "title": "Etapa 3: Scaling - Concurrencia y Saturación de Recursos",
+        "text": "step4.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
