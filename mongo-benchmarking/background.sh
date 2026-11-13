@@ -1,30 +1,28 @@
 #!/bin/bash
 
+set -e
 export DEBIAN_FRONTEND=noninteractive
 
-# 1. Actualizar e instalar paquetes base y Redis
+# 1. Actualizar e instalar paquetes base, Redis y librerías de Python vía APT (evita error PEP 668)
 apt-get update
-apt-get install -y curl gnupg lsb-release redis-server python3-pip bc
+apt-get install -y curl gnupg ca-certificates lsb-release redis-server python3-pip python3-pymongo python3-redis bc
 
-# 2. Instalar MongoDB 7.0 si no está preinstalado
+# 2. Instalar MongoDB 7.0 fijando 'jammy' para compatibilidad con Ubuntu 22.04 y 24.04 en Killercoda
 if ! command -v mongod &> /dev/null; then
-    curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
-    echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/7.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+    curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | gpg --dearmor --yes -o /usr/share/keyrings/mongodb-server-7.0.gpg
+    echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list
     apt-get update
     apt-get install -y mongodb-org
 fi
 
-# 3. Instalar drivers de Python para el generador de concurrencia (Etapa 3)
-pip3 install pymongo redis
-
-# 4. Configurar y arrancar Redis (limitado a 64MB para proteger la VM)
-systemctl stop redis-server
+# 3. Configurar y arrancar Redis (limitado a 64MB para proteger la VM)
+systemctl stop redis-server || true
 redis-server --daemonize yes --maxmemory 64mb --maxmemory-policy allkeys-lru
 
-# 5. Configurar y arrancar MongoDB con caché de WiredTiger limitada a 256MB (0.25 GB)
+# 4. Configurar y arrancar MongoDB con caché de WiredTiger limitada a 256MB (0.25 GB)
 systemctl stop mongod || true
+pkill -f mongod || true
 mkdir -p /data/bench_db /var/log/mongodb
-chown -R mongodb:mongodb /data/bench_db /var/log/mongodb
 
 mongod --dbpath /data/bench_db \
        --logpath /var/log/mongodb/mongod.log \
@@ -33,7 +31,12 @@ mongod --dbpath /data/bench_db \
        --port 27017 \
        --fork
 
-# 6. Crear directorio de trabajo y scripts de apoyo para las pruebas
+# 5. Esperar a que mongod acepte conexiones antes de continuar
+until mongosh --quiet --eval "db.runCommand({ ping: 1 }).ok" > /dev/null 2>&1; do
+    sleep 1
+done
+
+# 6. Crear directorio de trabajo y script generador de carga para la Etapa 3
 mkdir -p /root/benchmark
 
 cat << 'EOF' > /root/benchmark/scale_test.py
@@ -54,7 +57,6 @@ def worker(worker_id):
     for _ in range(ops_per_thread):
         sensor_buscado = random.randint(1, 500)
         t0 = time.perf_counter()
-        # Consulta por rango que exige trabajo de CPU y lectura de índice
         list(col.find({"sensor_id": sensor_buscado, "temperatura": {"$gt": 25}}).limit(5))
         t1 = time.perf_counter()
         latencies.append((t1 - t0) * 1000.0) # en ms
@@ -91,5 +93,5 @@ EOF
 
 chmod +x /root/benchmark/scale_test.py
 
-# Marcar finalización para foreground.sh
+# 7. Marcar finalización sólo cuando todo está verificado
 touch /tmp/setup_finished
